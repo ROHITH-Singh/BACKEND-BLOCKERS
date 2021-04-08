@@ -15,8 +15,9 @@ const client = new Client({
 client.connect();
 
 router1.post('/',(req,res)=>{
-  res.send("inside");
+ 
   let { name ,email ,password ,password2} = req.body;
+  res.send(name,email,password,password2);
   console.log(name,email,password,password2);
 })
 
