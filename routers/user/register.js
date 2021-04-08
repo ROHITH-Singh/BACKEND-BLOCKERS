@@ -15,7 +15,8 @@ const client = new Client({
 client.connect();
 
 router1.post('/',(req,res)=>{
-  console.log(req.body);
+  let{name,email,password,password2} = req.body
+  console.log(name.email,password,password2);
   res.send(req.body);
 
 })
