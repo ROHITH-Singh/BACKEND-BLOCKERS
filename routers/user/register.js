@@ -1,5 +1,5 @@
 const express = require('express');
-// const app = express();
+ const app = express();
 const router1 = express.Router()
 
 const { Client } = require('pg');
@@ -18,3 +18,5 @@ router1.post('/',(req,res)=>{
   let { name ,email ,password ,password2} = req.body;
   console.log(name,email,password,password2);
 })
+
+module.exports = router1 ;
