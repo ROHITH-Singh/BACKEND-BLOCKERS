@@ -15,8 +15,7 @@ const client = new Client({
 client.connect();
 
 router1.post('/',(req,res)=>{
- 
-  
+  console.log(req.body);
   res.send(req.body);
 
 })
