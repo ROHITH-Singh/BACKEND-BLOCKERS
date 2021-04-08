@@ -48,10 +48,9 @@ router1.post('/',async(req,res)=>{
                         throw err;
                       }
                     if(results.rows.length > 0)
-                    {
-                      errors.push({message: "email already registered"});
-                      console.log(errors);
-                      res.send(errors);
+                    { 
+                      res.send(`${"message: email is registered"}`);
+                      
                       
                     }
                     }
