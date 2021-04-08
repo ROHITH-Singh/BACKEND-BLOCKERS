@@ -16,13 +16,7 @@ const client = new Client({
 client.connect();
 
 app.get('/',(req,res)=>{
-    client.query('SELECT * FROM user_details ',(err,rem)=>{
-        res.send(rem);
-        console.log(err,rem);
-
-});
-
-    client.end()
+res.send("hello")
 })
 
 app.listen(port,function(){
