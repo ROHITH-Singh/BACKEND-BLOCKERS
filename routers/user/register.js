@@ -49,8 +49,8 @@ router1.post('/',async(req,res)=>{
                       }
                     if(results.rows.length > 0)
                     { 
-                      
-                      res.send(results.rows);
+                      errors.push({message: "Email is already registered"})
+                      res.send(errors);
                       
                     }
                     }
