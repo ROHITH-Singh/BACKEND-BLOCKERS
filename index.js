@@ -19,6 +19,10 @@ app.get('/',(req,res)=>{
 res.send("hello")
 })
 
+app.use('/user/register',require('./routers/user/register'));
+
+
+
 app.listen(port,function(){
     console.log('server started')
   })
