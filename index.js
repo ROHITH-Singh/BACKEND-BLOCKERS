@@ -14,8 +14,14 @@ const client = new Client({
 });
 
 client.connect();
-client.query('SELECT * FROM user_details ',(err,res)=>{
-    console.log(err,res);
+
+app.get('/',(req,res)=>{
+    client.query('SELECT * FROM user_details ',(err,res)=>{
+        res.send(res);
+        console.log(err,res);
+
+});
+
     client.end()
 })
 
