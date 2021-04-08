@@ -19,7 +19,8 @@ app.get('/',(req,res)=>{
 res.send("hello")
 })
 
-app.use('/user/register',require('./routers/user/register'));
+const user1 = require('./routers/user/register')
+app.use('/user/register',user1);
 
 
 
