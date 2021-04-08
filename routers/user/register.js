@@ -16,7 +16,7 @@ client.connect();
 
 router1.post('/',(req,res)=>{
   let{name,email,password,password2} = req.body
-  console.log(name.email,password,password2);
+  console.log(name,email,password,password2);
   res.send(req.body);
 
 })
