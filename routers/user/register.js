@@ -48,7 +48,7 @@ router1.post('/',async(req,res)=>{
                         throw err;
                       }
                     else{
-                      
+                      res.send(results.rows)
                       console.log(results.rows);
                     }
                     }
