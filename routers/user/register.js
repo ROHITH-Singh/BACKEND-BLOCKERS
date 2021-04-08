@@ -1,5 +1,6 @@
 const express = require('express');
-const app = express();
+// const app = express();
+const router1 = express.Router()
 
 const { Client } = require('pg');
 
@@ -13,7 +14,7 @@ const client = new Client({
 
 client.connect();
 
-app.post('/',(req,res)=>{
+router1.post('/',(req,res)=>{
   let { name ,email ,password ,password2} = req.body;
   console.log(name,email,password,password2);
 })
