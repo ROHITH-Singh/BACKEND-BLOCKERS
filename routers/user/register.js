@@ -14,7 +14,7 @@ const client = new Client({
 
 client.connect();
 
-router1.post('/',(req,res)=>{
+router1.get('/',(req,res)=>{
   res.send("inside");
   let { name ,email ,password ,password2} = req.body;
   console.log(name,email,password,password2);
