@@ -37,6 +37,9 @@ router1.post('/',(req,res)=>{
     {
       res.send(errors);
     }
+    else{
+      res.send("registered")
+    }
     
   
 
