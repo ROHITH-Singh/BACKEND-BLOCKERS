@@ -42,6 +42,16 @@ router1.post('/',async(req,res)=>{
       // res.send("registered")
       let hashedPassword = await bcrypt.hash(password,10);
       res.send(hashedPassword);
+      client.query(`SELECT * FROM user_details
+                    WHERE email = $1`,[email],(err,results)=>{
+                      if(err){
+                        throw err;
+                      }
+                    else{
+                      res.send(results.rows);
+                    }
+                    }
+      )
     }
     
   
