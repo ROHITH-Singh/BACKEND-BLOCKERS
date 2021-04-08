@@ -2,6 +2,7 @@ const express = require('express');
  const app = express();
 const router1 = express.Router()
 var validator = require("email-validator");
+var bcrypt = require('bcryptjs');
 
 const { Client } = require('pg');
 
@@ -15,7 +16,7 @@ const client = new Client({
 
 client.connect();
 
-router1.post('/',(req,res)=>{
+router1.post('/',async(req,res)=>{
   let{name,email,password,password2} = req.body
   // console.log(name,email,password,password2);
   // res.send(req.body);
@@ -38,7 +39,9 @@ router1.post('/',(req,res)=>{
       res.send(errors);
     }
     else{
-      res.send("registered")
+      // res.send("registered")
+      let hashedPassword = await bcrypt.hash(password,10);
+      res.send(hashedPassword);
     }
     
   
