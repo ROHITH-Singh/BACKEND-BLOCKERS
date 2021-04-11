@@ -35,7 +35,7 @@ router2.post('/', async(req,res)=>{
                     res.send(user);
                 }
                 else{
-                       res.send({message:"Password is incorrect"});
+                       res.send({message:"Password is incorrect",password:hashedPassword});
                     }
                 }
             else{
