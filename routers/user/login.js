@@ -43,7 +43,7 @@ router2.post('/', async(req,res)=>{
                });
                 }
             else{
-                res.send({message:"Email is not registerd"});
+                res.send({message:"false",type:"Email not registered"});
             }
         }
     )
