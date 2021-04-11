@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 // const cors = require('cors')
+
+const session = require('express-session');
+const flash   = require('express-flash');
+
 const port = process.env.PORT || 9000
 
 const { Client } = require('pg');
@@ -14,6 +18,14 @@ const client = new Client({
 });
 
 client.connect();
+app.use(session({
+  secret: 'secret',
+  resave:false,
+  saveUninitialized : false
+
+}));
+
+app.use(flash());
 
 app.get('/',(req,res)=>{
 res.send("hello")

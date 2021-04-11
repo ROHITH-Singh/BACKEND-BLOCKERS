@@ -53,6 +53,16 @@ router1.post('/',async(req,res)=>{
                       res.send(errors);
                       
                     }
+                    else{
+                      client.query(`INSERT INTO user-details(name,email,password)
+                       VALUES($1,$2,$3)
+                       RETURNING user_id,password `[name,email,hashedPassword],(err,results)=>{
+                         if (err)
+                         throw err;
+                         console.log(results.row);
+                         req.flash('success_msg',"Your are now registered please login ")
+                       });
+                    }
                     }
       )
     }
