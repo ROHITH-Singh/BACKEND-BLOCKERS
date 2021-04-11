@@ -31,8 +31,11 @@ app.get('/',(req,res)=>{
 res.send("hello")
 })
 
-const user1 = require('./routers/user/register')
-app.use('/user/register',user1);
+const path1 = require('./routers/user/register')
+app.use('/user/register',path1);
+
+const path2 =  require('./routers/user/login')
+app.use('/user/login',path2);
 
 
 
