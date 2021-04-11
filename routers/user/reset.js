@@ -19,7 +19,7 @@ client.connect();
 router3.post('/',async(req,res) => {
    let {email,password} = req.body;
 
-   client.query(`UPDATE user_details SET password=${password} WHERE email=${email} RETURNING *`,[password,email],(err,result)=>{
+   client.query(`UPDATE user_details SET password=$1 WHERE email=$2 RETURNING *`,[password,email],(err,result)=>{
        if(err){
            res.send({message:false,type:err})
        }
