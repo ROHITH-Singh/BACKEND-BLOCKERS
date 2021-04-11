@@ -31,12 +31,15 @@ app.get('/',(req,res)=>{
 res.send("hello")
 })
 
+
 const path1 = require('./routers/user/register')
 app.use('/user/register',path1);
 
 const path2 =  require('./routers/user/login')
 app.use('/user/login',path2);
 
+const path3 =  require('./routers/user/reset')
+app.use('/user/reset',path3);
 
 
 app.listen(port,function(){
