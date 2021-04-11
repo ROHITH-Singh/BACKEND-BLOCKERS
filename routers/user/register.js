@@ -3,7 +3,7 @@ const express = require('express');
 const router1 = express.Router()
 var validator = require("email-validator");
 var bcrypt = require('bcryptjs');
-
+var d = new Date();
 const { Client } = require('pg');
 
 router1.use(express.json());
@@ -54,9 +54,9 @@ router1.post('/',async(req,res)=>{
                       
                     }
                     else{
-                      client.query(`INSERT INTO user-details(name,email,password)
-                       VALUES($1,$2,$3)
-                       RETURNING user_id,password `[name,email,hashedPassword],(err,results)=>{
+                      client.query(`INSERT INTO user-details(name,email,password,date)
+                       VALUES($1,$2,$3,$4)
+                       RETURNING user_id,password `[name,email,hashedPassword,d],(err,results)=>{
                          if (err)
                          throw err;
                          else{
