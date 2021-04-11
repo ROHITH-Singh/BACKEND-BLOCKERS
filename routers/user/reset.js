@@ -25,7 +25,7 @@ router3.post('/',async(req,res) => {
            res.send({message:false,type:err})
        }
        if(result.rows.length>0){
-           res.send({message:true,type:"Password is reseted",user:result.row[0]})
+           res.send({message:true,type:"Password is reseted",user:result.rows[0]})
        }
        else{
            res.send({message:false,type:"email doesnt exits"})
