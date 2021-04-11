@@ -59,8 +59,12 @@ router1.post('/',async(req,res)=>{
                        RETURNING user_id,password `[name,email,hashedPassword],(err,results)=>{
                          if (err)
                          throw err;
-                         console.log(results.row);
-                         req.flash('success_msg',"Your are now registered please login ")
+                         else{
+                           console.log(results.row);
+                           res.send(results);
+                         }
+                         
+                         
                        });
                     }
                     }
