@@ -57,8 +57,10 @@ router1.post('/',async(req,res)=>{
                       client.query(`INSERT INTO user-details(name,email,password,date)
                        VALUES($1,$2,$3,$4)
                        RETURNING user_id,password `,[name,email,hashedPassword,d],(err,results)=>{
-                         if (err)
-                         throw err;
+                         if (err){
+                            throw err ;
+                         }
+                        
                          else{
                            console.log(results.row);
                            res.send(results);
