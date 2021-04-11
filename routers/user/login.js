@@ -30,13 +30,14 @@ router2.post('/', async(req,res)=>{
             if(result.rows.length > 0)
             {   const user = result.rows[0];
                 console.log(user);
-                const hashedPassword = await bcrypt.hash(password,10);
-                if(hashedPassword==user.password){
-                    res.send(user);
-                }
-                else{
-                       res.send({message:"Password is incorrect",password:user.password,password2:hashedPassword});
-                    }
+               bcrypt.compare(password,user.password,(err,isMatch)=>{
+                   if(err){
+                       throw err;
+                   }
+                   if(isMatch){
+                       res.send(user);
+                   }
+               });
                 }
             else{
                 res.send({message:"Email is not registerd"});
