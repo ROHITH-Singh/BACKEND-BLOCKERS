@@ -58,16 +58,16 @@ router1.post('/',async(req,res)=>{
                       client.query(`INSERT INTO user-details(name, email, password)
                        VALUES($1,$2,$3)
                        RETURNING user_id,password `,
-                       [name,email,hashedPassword],(err,results)=>{
-                         if (err){
-                            throw err 
-                         }
+                       [name,email,hashedPassword],(err1,results1)=>{
+                        if(err1){
+                          throw err1;
+                        }
+                      if(results1.rows.length > 0)
+                      { 
+                        errors.push({message: "u r  registered"})
+                        res.send(errors);
                         
-                         else{
-                           console.log(results.row);
-                           res.send(results);
-                         }
-                         
+                      }
                          
                        });
                     }
