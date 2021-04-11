@@ -35,7 +35,10 @@ router2.post('/', async(req,res)=>{
                        throw err;
                    }
                    if(isMatch){
-                       res.send(user);
+                       res.send({message:"true",user:user});
+                   }
+                   else{
+                       res.send({message:"false",type:"incorrect password"});
                    }
                });
                 }
