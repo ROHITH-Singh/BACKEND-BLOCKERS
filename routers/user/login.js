@@ -22,7 +22,7 @@ router2.post('/', async(req,res)=>{
     let{email , password} = req.body
 
     client.query(
-        `SELECT * FROM user_details WHERE email = $1`,[email],(err,result)=>{
+        `SELECT * FROM user_details WHERE email = $1`,[email],async(err,result)=>{
             if(err){
                 throw err ;
             }
@@ -30,7 +30,7 @@ router2.post('/', async(req,res)=>{
             if(result.rows.length > 0)
             {   const user = result.rows[0];
                 console.log(user);
-                let hashedPassword = await bcrypt.hash(password,10);
+                const hashedPassword = await bcrypt.hash(password,10);
                 if(hashedPassword==result.rows[0].password){
                     res.send(user);
                 }
@@ -38,8 +38,6 @@ router2.post('/', async(req,res)=>{
                        res.send({message:"Password is incorrect"});
                     }
                 }
-
-            
             else{
                 res.send({message:"Email is not registerd"});
             }
