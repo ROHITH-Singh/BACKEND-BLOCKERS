@@ -55,10 +55,10 @@ router1.post('/',async(req,res)=>{
                     }
                     else{
                       console.log("into query part");
-                      client.query(`INSERT INTO user_details(name, email, password)
+                      client.query(`INSERT INTO user_details(name, email, password,date)
                        VALUES($1, $2, $3)
                        RETURNING user_id,password `,
-                       [name,email,hashedPassword],
+                       [name,email,hashedPassword,d],
                        (err1,results1)=>{
                         if(err1){
                           throw err1;
