@@ -31,7 +31,7 @@ router2.post('/', async(req,res)=>{
             {   const user = result.rows[0];
                 console.log(user);
                 const hashedPassword = await bcrypt.hash(password,10);
-                if(hashedPassword==result.rows[0].password){
+                if(hashedPassword==user.password){
                     res.send(user);
                 }
                 else{
