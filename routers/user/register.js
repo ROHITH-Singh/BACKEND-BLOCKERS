@@ -66,7 +66,7 @@ router1.post('/',async(req,res)=>{
                       if(results1.rows.length > 0)
                       { 
                         errors.push({message: "u r  registered PLease Login"})
-                        res.send(err1);
+                        res.send(results1);
                         
                       }
                          
