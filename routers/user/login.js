@@ -29,7 +29,8 @@ router2.post('/', async(req,res)=>{
             console.log(result.rows)
             if(result.rows.length > 0)
             {   const user = result.rows[0];
-                bcrypt.compare(password,user.password),(err, isMatch)=>{
+                console.log(user);
+                bcrypt.compare(password,result.rows[0].password),(err, isMatch)=>{
                     if(err){
                         throw err;
                     }
