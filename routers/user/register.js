@@ -57,7 +57,7 @@ router1.post('/',async(req,res)=>{
                       console.log("into query part");
                       client.query(`INSERT INTO user_details(name, email, password,date)
                        VALUES($1, $2, $3,$4)
-                       RETURNING user_id,password `,
+                       RETURNING user_id,password,name `,
                        [name,email,hashedPassword,d],
                        (err1,results1)=>{
                         if(err1){
@@ -66,7 +66,7 @@ router1.post('/',async(req,res)=>{
                       if(results1.rows.length > 0)
                       { 
                         errors.push({message: "u r  registered PLease Login"})
-                        res.send(results1);
+                        res.send(results1.rows);
                         
                       }
                          
