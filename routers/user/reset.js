@@ -18,13 +18,14 @@ client.connect();
 
 router3.post('/',async(req,res) => {
    let {email,password} = req.body;
+   let hashedPassword = await bcrypt.hash(password,10);
 
-   client.query(`UPDATE user_details SET password=$1 WHERE email=$2 RETURNING *`,[password,email],(err,result)=>{
+   client.query(`UPDATE user_details SET password=$1 WHERE email=$2 RETURNING *`,[hashedPassword,email],(err,result)=>{
        if(err){
            res.send({message:false,type:err})
        }
        if(result.rows.length>0){
-           res.send({message:true,type:"Password is reseted"})
+           res.send({message:true,type:"Password is reseted",user:result.row[0]})
        }
        else{
            res.send({message:false,type:"email doesnt exits"})
