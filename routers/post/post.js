@@ -17,66 +17,17 @@ const client = new Client({
 client.connect();
 
 router4.post('/',async(req,res)=>{
-  let{name,email,password,password2} = req.body
-  // console.log(name,email,password,password2);
-  // res.send(req.body);
-  let errors = []
+ 
+  let {post,date,type,user_id} = req.body ;
 
-  if(!name || !email || !password || !password2)
-    errors.push({message: "please enter all the details"});
-
-    if(password.length < 6)
-      errors.push({message:"password should be atleast  6 characters"});
-
-    if(!validator.validate(email))
-    errors.push({message: "email format is wrong"})
-
-    if(password != password2)
-    errors.push({message:"password does not match"});
-
-    if(errors.length > 0)
-    {
-      res.send(errors);
+  client.query(`INSERT INTO post(post,date,type,user_id) VALUES ($1,$2,$3,$4) RETURNING user_id,post`,[post,date,type,user_id],(err,result)=>{
+    if(err){
+      res.send({message:"false"},{type:err})
     }
     else{
-      // res.send("registered")
-      let hashedPassword = await bcrypt.hash(password,10);
-      // res.send(hashedPassword);
-      client.query(`SELECT * FROM user_details
-                    WHERE email = $1`,[email],(err,results)=>{
-                      if(err){
-                        throw err;
-                      }
-                    if(results.rows.length > 0)
-                    { 
-                      errors.push({message: "Email is already registered"})
-                      res.send(errors);
-                      
-                    }
-                    else{
-                      console.log("into query part");
-                      client.query(`INSERT INTO user_details(name, email, password,date)
-                       VALUES($1, $2, $3,$4)
-                       RETURNING user_id,password,name `,
-                       [name,email,hashedPassword,d],
-                       (err1,results1)=>{
-                        if(err1){
-                          throw err1;
-                        }
-                      if(results1.rows.length > 0)
-                      { 
-                        errors.push({message: "u r  registered PLease Login"})
-                        res.send(results1.rows);
-                        
-                      }
-                         
-                       });
-                    }
-                    }
-      )
+      res.send(result);
     }
-    
-  
+  })
 
 })
 
