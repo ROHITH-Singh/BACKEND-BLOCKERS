@@ -41,7 +41,7 @@ app.use('/user/login',path2);
 const path3 =  require('./routers/user/reset')
 app.use('/user/reset',path3);
 const path4 =  require('./routers/post/post')
-app.use('/post',path3);
+app.use('/post',path4);
 
 
 app.listen(port,function(){
