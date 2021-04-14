@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Zen+Dots&display=swap" rel="stylesheet"> 
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@1,500&display=swap" rel="stylesheet">
+     <!-- <link rel="stylesheet" href="style.css"> -->
+     <style>
+          td{
+            
+            font-family: 'Cabin', sans-serif;
+            background: #8e9eab;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        font-size: 20px;
+}
+
+th{text-align: center;font-family: 'Zen Dots', cursive;
+
+}
+table, th, td {
+    border: 3px solid black;
+  }
+     </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;font-family: 'Zen Dots', cursive;"> BLOCKERS BACKEND</h1>
+   <!-- <div>
+       <h3>
+           register api link
+       </h3>
+    <p>{name,email,password,password2} send in the request body in json format</p>
+       <li>
+        https://firebase-function-api.herokuapp.com/user/register/
+       </li>
+       <p>{u r  registered PLease Login} message appears for succesful registration </p>
+   </div> -->
+
+   <table style="width:100%">
+    <div style="background-color: #152642;">
+        <tr style="background-color: #152642; color: wheat;">
+            <th>API LINK</th>
+            <th>METHOD</th>
+            <th>PROCESS</th>
+            <TH>MESSAGE SUCCESS</TH>
+            <TH>MESSAGE FAILURE</TH>
+          </tr>
+    </div>
+   
+    <TR  >
+        <TD> https://firebase-function-api.herokuapp.com/user/register/</TD>
+        <TD>POST INTO BODY {name,email,password,password2} send in the request body in json format</TD>
+        <TD>register</TD>
+        <TD>{u r  registered PLease Login} message appears for succesful registration </TD>
+        <TD>{message: "please enter all the details"},{message:"password should be atleast  6 characters"},{message: "email format is wrong"},{message:"password does not match"},{message: "Email is already registered"}</TD>
+    </TR>
+    <TR>
+        <TD>https://firebase-function-api.herokuapp.com/user/login</TD>
+        <TD>POST INTO BODY {email , password} send in the request body in json format</TD>
+        <TD>Login</TD>
+        <TD>{message:"true",user:user}</TD>
+        <TD>{message:"false",type:"incorrect password"},{message:"false",type:"Email not registered"}</TD>
+    </TR>
+    <TR>
+        <TD>https://firebase-function-api.herokuapp.com/user/reset </TD>
+        <TD>POST INTO BODY {email , password} send in the request body in json format</TD>
+        <TD>RESET</TD>
+        <TD>{message:true,type:"Password is reseted",user:result.rows[0]}</TD>
+        <TD>{message:false,type:"email doesnt exits"},</TD>
+    </TR>
+    <tr>
+        <td> https://firebase-function-api.herokuapp.com/post/</td>
+        <td>POST INTO BODY {post,type,user_id} SEND IN THE request BODY IN json format</td>
+        <TD>POST QUESTION</TD>
+        <TD>{user_id,post}</TD>
+        <TD>{message:"false"},{type:err}</TD>
+    </tr>
+
+    <TR>
+        <TD>https://firebase-function-api.herokuapp.com/post/?type=$general</TD>
+        <TD>GET </TD>
+        <TD>GET QUESTION</TD>
+        <TD>JSON POST DATA</TD>
+        <TD>{message:"false"},{type:err}</TD>
+    </TR>
+    <tr>
+        <td>https://firebase-function-api.herokuapp.com/comment/?type=answer</td>
+        <td>POST INTO BODY {user_id,comment,post_id} SEND IN THE request BODY IN json format</td>
+        <td>post answer</td>
+        <td>JSON POST DATA</td>
+        <td>{message:"false"},{type:err}</td>
+
+    </tr>
+
+    <tr>
+        <td>https://firebase-function-api.herokuapp.com/comment/?type=reply&p_commentid=$number</td>
+        <td>POST INTO BODY {user_id,comment,post_id} SEND IN THE request BODY IN json format</td>
+        <td>post replying to parent comment </td>
+        <td>JSON POST DATA</td>
+        <td>{message:"false"},{type:err}</td>
+
+    </tr>
+
+    <tr>
+        <td>https://firebase-function-api.herokuapp.com/comment/?type=answer&p_commentid=$number</td>
+        <td>GET answers for post with p_commentid has post_id </td>
+        <td>GETTING ANSWERS IN ARRAY format</td>
+        <TD>JSON ARRAY DATA</TD>
+        <TD>{message:"false"},{type:err}</TD>
+
+    </tr>
+
+    <tr>
+        <td>https://firebase-function-api.herokuapp.com/comment/?p_commentid=$number</td>
+        <td>GET REPLIES for COMMENT with p_commentid has  PARENT COMMENT ID </td>
+        <td>GETTING REPLIES for parent comment IN ARRAY format</td>
+        <TD>JSON  DATA</TD>
+        <TD>{message:"false"},{type:err}</TD>
+
+    </tr>
+
+
+  </table> 
+
+
+
+
+
+</body>
+</html>

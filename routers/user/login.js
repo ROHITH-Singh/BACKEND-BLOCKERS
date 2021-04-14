@@ -1,7 +1,7 @@
 const express = require('express');
  const app = express();
 const router2 = express.Router()
-var validator = require("email-validator");
+
 var bcrypt = require('bcryptjs');
 var d = new Date();
 const { Client } = require('pg');

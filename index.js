@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 // const cors = require('cors')
 
-const session = require('express-session');
-const flash   = require('express-flash');
+
+app.set('view engine','ejs');
 
 const port = process.env.PORT || 9000
 
@@ -18,17 +18,12 @@ const client = new Client({
 });
 
 client.connect();
-app.use(session({
-  secret: 'secret',
-  resave:false,
-  saveUninitialized : false
 
-}));
 
-app.use(flash());
+
 
 app.get('/',(req,res)=>{
-res.send("hello")
+res.render('homeView');
 })
 
 
@@ -40,9 +35,12 @@ app.use('/user/login',path2);
 
 const path3 =  require('./routers/user/reset')
 app.use('/user/reset',path3);
+
 const path4 =  require('./routers/post/post')
 app.use('/post',path4);
 
+const path5 =  require('./routers/comments/comment')
+app.use('/comment',path5);
 
 app.listen(port,function(){
     console.log('server started')

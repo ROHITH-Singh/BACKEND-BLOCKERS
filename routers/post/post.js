@@ -1,10 +1,11 @@
 const express = require('express');
  const app = express();
-const router4 = express.Router()
+const router4 = express.Router();
 var validator = require("email-validator");
 var bcrypt = require('bcryptjs');
 var d = new Date();
 const { Client } = require('pg');
+const { query } = require('express');
 
 router4.use(express.json());
 const client = new Client({
@@ -18,17 +19,32 @@ client.connect();
 
 router4.post('/',async(req,res)=>{
  
-  let {post,date,type,user_id} = req.body ;
+  let {post,type,user_id} = req.body ;
 
-  client.query(`INSERT INTO post(post,date,type,user_id) VALUES ($1,$2,$3,$4) RETURNING user_id,post`,[post,date,type,user_id],(err,result)=>{
+  client.query(`INSERT INTO post(post,date,type,user_id) VALUES ($1,$2,$3,$4) RETURNING user_id,post`,[post,d,type,user_id],(err,result)=>{
     if(err){
       res.send({message:"false"},{type:err})
     }
     else{
-      res.send(result);
+      res.send(result.rows);
+    }
+  })
+
+})
+
+router4.get('/',async(req,res)=>{
+  let type = req.query.type;
+  console.log(type)
+  client.query(`SELECT * from post where type = $1`,[type],(err,result)=>{
+    if(err){
+      res.send({message:"false"},{type:err})
+    }
+    else{
+      res.send(result.rows);
     }
   })
 
 })
 
 module.exports = router4 ;
+
